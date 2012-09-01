@@ -89,24 +89,38 @@ $(function() {
             if (session_key != '') {
                 url += '&session_key=' + session_key;
             }
+            url += '&issue_closed_after=' + startTime;
+            url += '&issue_closed_before=' + endTime;
             $.getJSON(url, function(data) {
-                var result = '';
                 $.each(data.result, function(key, val) {
                     if (val.winner != true) {
                         return;
                     }
 
-                    result += '<li>';
-                    result += '<dl class="issue">';
+                    // prepare url
+                    var url = baseUrl + 'draft?current_draft=true';
+                    if (session_key != '') {
+                        url += '&session_key=' + session_key;
+                    }
+                    url += '&initiative_id=' + val.id;
+                    $.getJSON(url, function(data) {
+                        var content = data.result[0].content
+                        var result = '';
 
-                    result += '<dt>issue_id</dt><dd>' + val.issue_id + '</dd>';
-                    result += '<dt>id</dt><dd>' + val.id + '</dd>';
-                    result += '<dt>name</dt><dd>' + val.name + '</dd>';
+                        result += '<li>';
+                        result += '<dl class="issue">';
 
-                    result += '</dl>';
-                    result += '</li>';
+                        result += '<dt>issue_id</dt><dd>' + val.issue_id + '</dd>';
+                        result += '<dt>id</dt><dd>' + val.id + '</dd>';
+                        result += '<dt>name</dt><dd>' + val.name + '</dd>';
+                        result += '<dt>content</dt><dd>' + content + '</dd>';
+
+                        result += '</dl>';
+                        result += '</li>';
+
+                        $('#results ul').append(result);
+                    });
                 });
-                $('#results ul').html(result);
             });
 
         }, "json");
