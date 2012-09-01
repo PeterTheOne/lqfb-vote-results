@@ -1,0 +1,39 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/html">
+    <head>
+        <title>lqfb-vote-results</title>
+        <meta charset="utf-8">
+
+        <link rel="stylesheet" href="css/style.css" />
+        <script src="js/lib/jquery-1.8.0.min.js"></script>
+        <script src="js/script.js"></script>
+    </head>
+    <body>
+        <header>
+            <h1>lqfb-vote-results</h1>
+            <p>
+                by <a href="http://petergrassberger.com">Peter Grassberger</a>,
+                <a href="https://github.com/PeterTheOne">GitHub</a>
+            </p>
+        </header>
+        <div id="settings">
+            <h2>Settings</h2>
+            <form>
+                API BaseUrl: <input id="baseUrl" type="text" name="baseUrl" value="http://apitest.liquidfeedback.org:25520/" size="50" /><br />
+                API Key: <input id="apiKey" type="text" name="apiKey" value="" size="50" /><br />
+                <br />
+                Start Time Timestamp: <input id="startTime" type="text" name="startTime" value="" size="50" /><br />
+                End Time Timestamp: <input id="endTime" type="text" name="endTime" value="" size="50" /><br />
+                <br />
+                Limit: <input id="limit" type="text" name="limit" value="1000" size="50" /><br />
+                <input id="submit" type="button" name="submit" value="submit" />
+            </form>
+        </div>
+        <div id="results">
+            <h2>Results</h2>
+            <ul>
+
+            </ul>
+        </div>
+    </body>
+</html>

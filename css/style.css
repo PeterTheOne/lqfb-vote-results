@@ -1,0 +1,27 @@
+div {
+    margin: 10px;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+
+
+dl.issue {
+    width: 800px;
+    margin: 20px;
+    border: 1px solid black;
+}
+
+dl.issue dt:after {
+    content: ":";
+}
+
+dl.issue dt {
+    clear: left;
+    display: block;
+    float: left;
+    font-weight: bold;
+    min-width: 100px;
+}
