@@ -4,8 +4,8 @@ $(function() {
     var baseUrl = 'http://apitest.liquidfeedback.org:25520/';
     var apiKey = '';
 
-    var startTime = -1;
-    var endTime = -1;
+    var startTime = '';
+    var endTime = '';
 
     var limit = 1000;
 
@@ -22,15 +22,8 @@ $(function() {
         baseUrl = $('input#baseUrl').val();
         apiKey = $('input#apiKey').val();
 
-        startTime = parseInt($('input#startTime').val());
-        if (isNaN(startTime)) {
-            startTime = -1;
-        }
-
-        endTime = parseInt($('input#endTime').val());
-        if (isNaN(endTime)) {
-            endTime = -1;
-        }
+        startTime = $('input#startTime').val();
+        endTime = $('input#endTime').val();
 
         limit = parseInt($('input#limit').val());
     }
@@ -96,12 +89,8 @@ $(function() {
             if (session_key != '') {
                 url += '&session_key=' + session_key;
             }
-            if (startTime != -1) {
-                url += '&issue_closed_after=' + startTime;
-            }
-            if (endTime != -1) {
-                url += '&issue_closed_before=' + endTime;
-            }
+            url += '&issue_closed_after=' + startTime;
+            url += '&issue_closed_before=' + endTime;
             $.getJSON(url, function(data) {
                 $('#results ul').html('');
                 $.each(data.result, function(key, val) {
@@ -123,7 +112,7 @@ $(function() {
                         result += '<dl class="issue">';
 
                         result += '<dt>issue_id</dt><dd>' + val.issue_id + '</dd>';
-                        result += '<dt>id</dt><dd>' + val.id + '</dd>';
+                        result += '<dt>ini_id</dt><dd>' + val.id + '</dd>';
                         result += '<dt>name</dt><dd>' + val.name + '</dd>';
                         result += '<dt>content</dt><dd>' + content + '</dd>';
 
