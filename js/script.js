@@ -4,8 +4,8 @@ $(function() {
     var baseUrl = 'http://apitest.liquidfeedback.org:25520/';
     var apiKey = '';
 
-    var startTime = '';
-    var endTime = '';
+    var startTime = -1;
+    var endTime = -1;
 
     var limit = 1000;
 
@@ -23,7 +23,14 @@ $(function() {
         apiKey = $('input#apiKey').val();
 
         startTime = parseInt($('input#startTime').val());
+        if (isNaN(startTime)) {
+            startTime = -1;
+        }
+
         endTime = parseInt($('input#endTime').val());
+        if (isNaN(endTime)) {
+            endTime = -1;
+        }
 
         limit = parseInt($('input#limit').val());
     }
@@ -89,9 +96,14 @@ $(function() {
             if (session_key != '') {
                 url += '&session_key=' + session_key;
             }
-            url += '&issue_closed_after=' + startTime;
-            url += '&issue_closed_before=' + endTime;
+            if (startTime != -1) {
+                url += '&issue_closed_after=' + startTime;
+            }
+            if (endTime != -1) {
+                url += '&issue_closed_before=' + endTime;
+            }
             $.getJSON(url, function(data) {
+                $('#results ul').html('');
                 $.each(data.result, function(key, val) {
                     if (val.winner != true) {
                         return;
