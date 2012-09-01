@@ -106,6 +106,7 @@ $(function() {
                     url += '&initiative_id=' + val.id;
                     $.getJSON(url, function(data) {
                         var content = data.result[0].content
+                        content = content.replace(/\n/g, '<br />');
                         var result = '';
 
                         result += '<li>';
@@ -114,7 +115,8 @@ $(function() {
                         result += '<dt>issue_id</dt><dd>' + val.issue_id + '</dd>';
                         result += '<dt>ini_id</dt><dd>' + val.id + '</dd>';
                         result += '<dt>name</dt><dd>' + val.name + '</dd>';
-                        result += '<dt>content</dt><dd>' + content + '</dd>';
+                        result += '<dt>content</dt><br />';
+                         result += '<dd>' + content + '</dd>';
 
                         result += '</dl>';
                         result += '</li>';
