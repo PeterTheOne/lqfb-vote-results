@@ -86,7 +86,7 @@ $(function() {
 
             // prepare url
             var url = baseUrl + 'initiative?limit=' + limit;
-            if (session_key != '') {
+            if (typeof session_key !== "undefined") {
                 url += '&session_key=' + session_key;
             }
             url += '&issue_closed_after=' + startTime;
@@ -100,7 +100,7 @@ $(function() {
 
                     // prepare url
                     var url = baseUrl + 'draft?current_draft=true';
-                    if (session_key != '') {
+                    if (typeof session_key !== "undefined") {
                         url += '&session_key=' + session_key;
                     }
                     url += '&initiative_id=' + val.id;
