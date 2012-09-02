@@ -19,13 +19,13 @@ $(function() {
     function reset() {
         var battles = [];
 
-        baseUrl = $('input#baseUrl').val();
-        apiKey = $('input#apiKey').val();
+        baseUrl = $.trim($('input#baseUrl').val());
+        apiKey = $.trim($('input#apiKey').val());
 
-        startTime = $('input#startTime').val();
-        endTime = $('input#endTime').val();
+        startTime = $.trim($('input#startTime').val());
+        endTime = $.trim($('input#endTime').val());
 
-        limit = parseInt($('input#limit').val());
+        limit = parseInt($.trim($('input#limit').val()));
     }
 
     function init() {
